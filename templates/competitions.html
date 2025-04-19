@@ -1,0 +1,802 @@
+
+<!doctype html>
+{% load static %}
+{% load filter_helpers %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>GSE Competitions</title>
+    <link rel="icon" href="{% static 'gse_small.png' %}" type="image/x-icon">
+    <link href="{% static 'index_style.css' %}" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <meta name="theme-color" content="#7952b3">
+    <!-- Custom styles for this template -->
+    
+
+    <style>
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 4.5rem;
+        }
+      }
+      @media only screen and (max-device-width: 1600px) {
+        .bgimg-1, .bgimg-2, .bgimg-3 {
+          background-attachment: scroll;
+          min-height: 300px;
+        }
+      }
+
+      .circle-icon {
+        background: #777;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+        vertical-align: middle;
+        padding: 20px;
+        margin-bottom: 10px;
+      }
+      .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width:100%;
+      }
+      
+      /*--------------------------------------------------------------
+      # Sections & Section Header
+      --------------------------------------------------------------*/
+      section {
+        overflow: hidden;
+        padding: 40px 0;
+      }
+
+      .section-bg {
+        background-color: #eee;
+      }
+
+      .section-header {
+        text-align: center;
+        padding-bottom: 30px;
+      }
+
+      .section-header h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+        color: #0d6efd;
+        text-transform: uppercase;
+        font-family: var(--font-default);
+      }
+
+      .section-header p {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 400;
+        font-family: #0d6efd;
+      }
+
+      .section-header p span {
+        color: #0d6efd;
+      }
+
+      .section-header h2:after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: #6c757d;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      .offerings .nav-tabs {
+        border: 0;
+      }
+
+      .offerings .nav-link {
+        margin: 0 10px;
+        padding: 10px 5px;
+        transition: 0.3s;
+        color: var(--color-secondary);
+        border-radius: 0;
+        cursor: pointer;
+        height: 100%;
+        border: 0;
+        border-bottom: 2px solid #b6b6bf;
+      }
+
+      @media (max-width: 575px) {
+        .offerings .nav-link {
+          margin: 0 10px;
+          padding: 10px 0;
+        }
+      }
+
+      .offerings .nav-link i {
+        padding-right: 15px;
+        font-size: 48px;
+      }
+
+      .offerings .nav-link h4 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      @media (max-width: 575px) {
+        .offerings .nav-link h4 {
+          font-size: 16px;
+        }
+      }
+
+      .offerings .nav-link:hover {
+        color: #0d6efd;;
+      }
+
+      .offerings .nav-link.active {
+        color: #0d6efd;;
+        border-color: #0d6efd;;
+      }
+
+      .offerings .tab-content .tab-header {
+        padding: 20px 0;
+      }
+
+      .offerings .tab-content .tab-header p {
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #676775;
+        margin-bottom: 0;
+      }
+
+      .offerings .tab-content .tab-header h3 {
+        font-size: 36px;
+        font-weight: 600;
+        color: #0d6efd;;
+      }
+
+      .offerings .tab-content .offerings-item {
+        -moz-text-align-last: center;
+        text-align-last: center;
+      }
+
+      
+
+      .offerings .tab-content .offerings-item h4 {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--color-secondary);
+        font-family: var(--font-secondary);
+        font-weight: 30px;
+        margin-bottom: 5px;
+      }
+
+    @keyframes pulsate-btn {
+      0% {
+        transform: scale(0.6, 0.6);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1, 1);
+        opacity: 0;
+      }
+    }
+
+    #bracket {overflow:hidden;padding-top: 20px;font-size: 11px;padding: 20px 0;}
+    .split {display:block;float:left;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;width: 100%;-webkit-flex-direction:row;-moz-flex-direction:row;flex-direction:row;}
+    .champion {
+        
+        display:block;
+        width: 100%;
+        -webkit-flex-direction:row;
+        flex-direction:row;
+        -webkit-align-self:center;
+        align-self:center;
+        margin-bottom: 5%;
+        text-align: center;
+        padding: 230px 0\9;
+    } 
+    .champion i {color: #fff; font-size: 15px;padding: 10px 0; }
+    .round {display:block;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;width:95%;width:30.8333%\9;}
+    .split-one .round {margin: 0 2.5% 0 0;}
+    .championship {margin:0; width: 100%;padding: 10px 0;height:60px;-webkit-transition: all 0.2s;transition: all 0.2s;}
+    .matchup {margin:0;margin-bottom:10%; width: 100%;padding: 10px 0;height:60px;-webkit-transition: all 0.2s;transition: all 0.2s;}
+    .score {font-size: 11px;text-transform: uppercase;float: right;color: #2C7399;font-weight: bold;font-family: 'Roboto Condensed', sans-serif;position: absolute;right: 5px;}
+    .team {padding: 0 5px;margin: 3px 0;height: 30px; line-height: 30px;white-space: nowrap; overflow: hidden;position: relative;}
+    .round-2 .matchup {margin:0; margin-bottom:20%; height: 60px; padding: 60px 0;}
+    .round-3 .matchup {margin:0; margin-bottom:20%; height: 60px; padding: 150px 0;}
+    .round-4 .matchup {margin:0; margin-bottom:20%; height: 60px; padding: 250px 0;}
+    .round-details {font-family: 'Roboto Condensed', sans-serif; font-size: 14px; color: #fff;text-transform: uppercase;text-align: center;height: 40px;}
+    .champion li, .round li {background-color: #fff;box-shadow: none; opacity: 0.45;}
+    .current li {opacity: 1;}
+    .current li.team {background-color: #fff;box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);opacity: 1;}
+    .vote-options {display: block;height: 52px;}
+    .final {margin: 4.5em 0;}
+    </style>
+  </head>
+
+  <body style="padding-bottom:0;">
+
+    <!-- ===========================
+         NAVBAR / HEADER 
+    ============================ -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top p-2 bg-primary">
+        <div class="container-fluid">
+          <!-- Brand Logo -->
+          <a class="navbar-brand me-4" href="{% url 'index' %}">
+            <img src="{% static 'gseLogo.png' %}" height="50" class="ms-1" alt="GSE Logo">
+          </a>
+  
+          <!-- Hamburger Menu for Mobile -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'competitions' %}">Competitions</a>
+              </li>
+            </ul>
+  
+            <!-- Right-side Auth Buttons -->
+            {% if user.is_authenticated %}
+              {% if is_admin %}
+                <a href="{% url 'dashboard' %}">
+                  <button class="btn btn-outline-light btn-md" type="button">Dashboard</button>
+                </a>
+              {% endif %}
+              <a href="{% url 'team_dashboard' %}">
+                <button class="btn btn-outline-light btn-md" type="button">Team Login</button>
+              </a>
+            {% else %}
+              <a href="{% url 'login' %}">
+                <button class="btn btn-outline-light btn-md" type="button">Login</button>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+  
+      <!-- Banner -->
+      <div class="row bgimg-1 m-0 d-flex mx-auto align-items-center text-center"
+           style="background-image: url({% static 'splash9-1.png' %}); height: 250px;">
+        <div>
+          <h2 class="fs-1 text-white">COMPETITIONS</h2>
+        </div>
+      </div>
+    </header>
+  
+    <!-- ===========================
+         MAIN CONTENT (Sections Follow)
+    ============================ -->
+    <main>
+      <!-- You can paste your <section> content here like standings, brackets, etc. -->
+  
+      <main>
+        <!-- ===========================
+             ACTIVE PLAYOFF BRACKETS
+        ============================ -->
+        {% if num_active > 0 %}
+          <section id="offerings" class="offerings">
+            <div class="container" data-aos="fade-up">
+              <div class="section-header">
+                <p>{{ active_league_games|getLeagueSeason }} <span>CHAMPIONSHIP</span> PLAYOFF BRACKETS</p>
+              </div>
+      
+              <!-- League Tabs (Navigation for brackets by league) -->
+              <ul class="nav nav-tabs justify-content-center" role="tablist">
+                {% for league in active_league_games %}
+                  {% if league.show_bracket %}
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link {% if league.id == active_league_games.0.id %}active show{% endif %}" 
+                         data-bs-toggle="tab" 
+                         data-bs-target="#{{ league.season }}-{{ league.id }}3" 
+                         aria-selected="true" 
+                         role="tab">
+                        <h4>{{ league }}</h4>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+      
+              <!-- Brackets Content (Each tab displays bracket rounds for a league) -->
+              <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+                {% for league in active_league_games %}
+                  {% if league.show_bracket %}
+                    <div class="tab-pane mt-2 fade {% if league.id == active_league_games.0.id %}active show{% endif %} bgimg-1 px-4" 
+                         id="{{ league.season }}-{{ league.id }}3" 
+                         style="background-image:url({% static 'gseBG2.png' %});" 
+                         role="tabpanel">
+      
+                      <!-- League Header (Logo and title) -->
+                      <div class="tab-header d-flex text-center align-items-center row text-light">
+                        <div class="col">
+                          <img src="{% static 'gseLogo.png' %}" height="100" class="ms-1">
+                        </div>
+                        <div class="col">
+                          <h4 class="fs-3 font-weight-bold">{{ league.league_season_name }}</h4>
+                        </div>
+                      </div>
+      
+                      <!-- Bracket Rounds -->
+                      {% with league|list_brackets as brackets %}
+                        {% for num in brackets %}
+                          <div id="bracket" class="container">
+                            <div class="split split-one">
+                              {% with league|getTourneyDates as tourney_dates %}
+                                {% with tourney_dates|get_bracket_dates:num as dates %}
+                                  {% for date in dates %}
+                                    {% if forloop.counter < dates|length %}
+                                      <!-- Standard Round (not final) -->
+                                      <div class="round round-{{ forloop.counter }} current">
+                                        <div class="round-details">
+                                          {% if forloop.counter == dates|remove_one %}Semi-Finals{% else %}Round {{ forloop.counter }}{% endif %}<br>
+                                          <span class="date">{{ date.match_date|date:'M-d' }}</span>
+                                        </div>
+      
+                                        {% with league.playoff_team_count|get_low:forloop.counter as low_match %}
+                                        {% with league.playoff_team_count|get_high:forloop.counter as high_match %}
+                                        {% with league|get_tourney_matches as t_matches %}
+      
+                                          {% for match in t_matches %}
+                                            {% if match.match_date|same_date:date and match.tourney_number < t_matches|champ_match:match and match.bracket_number == num and match.tourney_number >= low_match and match.tourney_number <= high_match %}
+                                              <ul class="matchup regular" id="rounds_{{ forloop.counter }}">
+                                                <!-- Home Team -->
+                                                <li class="team team-top {% if match.complete and match.home_score > match.away_score %}bg-info{% else %}bg-light{% endif %}">
+                                                  {% if match.home_team %}
+                                                    <div class="me-2" style="float:left;width:25px; height:20px">
+                                                      <img src="{% get_media_prefix %}{{ match.home_team.school_team.school.school_image }}" style="max-width:100%; height:auto;">
+                                                    </div>
+                                                    {{ match.home_team.seeding }}-{{ match.home_team.school_team.school.school_name }}<span class="score">{{ match.home_score }}</span>
+                                                  {% else %}TBD{% endif %}
+                                                </li>
+      
+                                                <!-- Away Team -->
+                                                <li class="team team-bottom {% if match.complete and match.home_score < match.away_score %}bg-info{% else %}bg-light{% endif %}">
+                                                  {% if match.away_team %}
+                                                    <div class="me-2" style="float:left;width:25px; height:20px">
+                                                      <img src="{% get_media_prefix %}{{ match.away_team.school_team.school.school_image }}" style="max-width:100%; height:auto;">
+                                                    </div>
+                                                    {{ match.away_team.seeding }}-{{ match.away_team.school_team.school.school_name }}<span class="score">{{ match.away_score }}</span>
+                                                  {% else %}TBD{% endif %}
+                                                </li>
+                                              </ul>
+                                            {% endif %}
+                                          {% endfor %}
+      
+                                        {% endwith %}
+                                        {% endwith %}
+                                        {% endwith %}
+                                      </div>
+                                    {% else %}
+                                      <!-- Final Round / Championship -->
+                                      <div class="champion">
+                                        <div class="final current">
+                                          <i class="fs-4 bi-trophy"></i>
+                                          <div class="round-details">
+                                            championship <br><span class="date">{{ date.match_date|date:'M-d' }}</span>
+                                          </div>
+                                          {% with league|get_tourney_matches as t_matches %}
+                                            {% for match in t_matches %}
+                                              {% if match.match_date|same_date:date and match.tourney_number == t_matches|champ_match:match and match.bracket_number == num %}
+                                                <ul class="matchup championship">
+                                                  <li class="team team-top {% if match.complete and match.home_score > match.away_score %}bg-info{% else %}bg-light{% endif %}">
+                                                    {% if match.home_team %}
+                                                      <div class="me-2" style="float:left;width:25px; height:20px">
+                                                        <img src="{% get_media_prefix %}{{ match.home_team.school_team.school.school_image }}" style="max-width:100%; height:auto;">
+                                                      </div>
+                                                      {{ match.home_team.seeding }}-{{ match.home_team.school_team.school }}<span class="score">{{ match.home_score }}</span>
+                                                    {% else %}TBD{% endif %}
+                                                  </li>
+                                                  <li class="team team-bottom {% if match.complete and match.home_score < match.away_score %}bg-info{% else %}bg-light{% endif %}">
+                                                    {% if match.away_team %}
+                                                      <div class="me-2" style="float:left;width:25px; height:20px">
+                                                        <img src="{% get_media_prefix %}{{ match.away_team.school_team.school.school_image }}" style="max-width:100%; height:auto;">
+                                                      </div>
+                                                      {{ match.away_team.seeding }}-{{ match.away_team.school_team.school }}<span class="score">{{ match.away_score }}</span>
+                                                    {% else %}TBD{% endif %}
+                                                  </li>
+                                                </ul>
+                                              {% endif %}
+                                            {% endfor %}
+                                          {% endwith %}
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                  {% endfor %}
+                                {% endwith %}
+                              {% endwith %}
+                            </div>
+                          </div>
+                        {% endfor %}
+                      {% endwith %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </section>
+        {% endif %}
+
+    <!-- ===========================
+        CHAMPIONSHIP STANDINGS
+    ============================ -->
+    <section id="offerings" class="offerings">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+        <!-- Section Header -->
+        <div class="section-header">
+          <p>{{active_league_games|getLeagueSeason}} <span>CHAMPIONSHIP</span> STANDINGS</p>
+        </div>
+
+        <!-- League Tabs -->
+        <ul class="nav nav-tabs d-flex justify-content-center" role="tablist">
+          {% for league in active_league_games %}
+            {% if league.league_level.level_of_play == "Champion" %}
+              <li class="nav-item" role="presentation">
+                <a class="nav-link {% if league.id == active_league_games.0.id %}active show{% endif %}" 
+                  data-bs-toggle="tab" 
+                  data-bs-target="#{{league.season}}-{{league.id}}" 
+                  aria-selected="true" 
+                  role="tab">
+                  <h4>{{league}}</h4>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          {% for league in active_league_games %}
+            {% if league.league_level.level_of_play == "Champion" %}
+              <div class="tab-pane mt-2 fade {% if league.id == active_league_games.0.id %}active show{% endif %} bgimg-1 px-4" 
+                  id="{{league.season}}-{{league.id}}" 
+                  style="background-image:url({% static 'gseBG2.png' %});" 
+                  role="tabpanel">
+
+                <!-- Header with Logo and League Name -->
+                <div class="tab-header d-flex text-center align-items-center row text-light">
+                  <div class="col">
+                    <img src="{% static 'gseLogo.png' %}" height="100px" width="auto" class="ms-1">
+                  </div>
+                  <div class="col">
+                    <h4 class="align-middle fs-3 font-weight-bold">{{league.league_season_name}}</h4>
+                  </div>
+                </div>
+
+                <div class="row d-flex">
+                  {% with league|getConferences as league_confs %}
+                    {% for conf in league_confs %}
+                      {% with league|getLeagueTeams|getTeams_comp:conf as conf_teams %}
+                        {% if conf_teams|length > 0 %}
+                          {% if league_confs|length > 2 %}
+                            <div class="col-md-6 text-center rounded">
+                          {% else %}
+                            <div class="col-md text-center rounded">
+                          {% endif %}
+                            <table style="font-family: sans-serif;" class="table table-striped table-hover bg-light rounded">
+                              <thead class="bg-primary fs-3 text-light">
+                                <th colspan="7" class="rounded">{{conf}}</th>
+                              </thead>
+                              <tbody>
+                                {% for team in conf_teams %}
+                                  <tr class="rounded">
+                                    <td class="pe-0" style="color:#605d5c">{{ forloop.counter }}.</td>
+                                    <td style="width:60px; height:50px">
+                                      <img src="{% get_media_prefix %}{{team.school_team__school__school_image}}" class="p-0" style="max-width:100%;max-height:100%;width:auto;height:auto;">
+                                    </td>
+                                    <td class="text-start" style="color:#495057"><strong>{{team.school_team__school__school_name}}</strong></td>
+                                    <td style="color:#605d5c">W: {{team.wins}}</td>
+                                    <td style="color:#605d5c">L: {{team.losses}}</td>
+                                    <td style="color:#605d5c">T: {{team.ties}}</td>
+                                    <td style="color:#605d5c">Points: {{team.points}}</td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+                    {% endfor %}
+                  {% endwith %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    
+    <!-- ===========================
+        CONTENDERS STANDINGS
+    ============================ -->
+    <section id="offerings" class="offerings">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="section-header">
+          <p>{{contenders_games|getLeagueSeason}} <span>CONTENDERS</span> STANDINGS</p>
+        </div>
+
+        <!-- League Tabs -->
+        <ul class="nav nav-tabs d-flex justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" role="tablist">
+          {% for league in contenders_games %}
+          {% if league.league_level.level_of_play  == "Contenders" %}
+          <li class="nav-item" role="presentation"> 
+            {% if league.id == contenders_games.0.id %}
+              <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}3" aria-selected="true" role="tab">
+                <h4>{{league}}</h4> 
+              </a>
+            {% else %}
+              <a class="nav-link" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}3" aria-selected="false" tabindex="-1" role="tab">
+                <h4>{{league}}</h4> 
+              </a>
+            {% endif %}
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          {% for league in contenders_games %}
+            {% if league.league_level.level_of_play  == "Contenders" %}
+              {% if league.id == contenders_games.0.id %}
+                <div class="tab-pane mt-2 fade active show bgimg-1 px-4" id="{{league.season}}-{{league.id}}3" style="background-image:url({% static 'gseBG2.png' %});" role="tabpanel">
+              {% else %}
+                <div class="tab-pane mt-2 fade bgimg-1 px-4" id="{{league.season}}-{{league.id}}3" style="background-image:url({% static 'gseBG2.png' %}); " role="tabpanel">
+              {% endif %}
+                  
+              <!-- Header with Logo and League Name -->
+              <div class="tab-header d-flex text-center align-items-center row text-light">
+                <div class="col"><img src="{% static 'gseLogo.png' %}" height="100px" width="auto" class="ms-1"></div>
+                <div class="col"><h4 class="align-middle fs-3 font-weight-bold">{{league.league_season_name}}</h4></div>
+              </div>
+              <div class="row d-flex">
+                {% with league|getConferences as league_confs %}
+                  {% for conf in league_confs %}
+                    {% with league|getLeagueTeams|getTeams_comp:conf as conf_teams %}
+                      {% if conf_teams|length > 0 %}
+                        {% if league_confs|length > 2 %}
+                          <div class="col-md-6 text-center rounded"> 
+                        {% else %}
+                          <div class="col-md text-center rounded"> 
+                        {% endif %}
+                            <table style="font-family: sans-serif;" class="table table-striped table-hover bg-light rounded ">
+                              <thead class="bg-primary fs-3 text-light">
+                                <th colspan="7" class="rounded">{{conf}}</th>
+                              </thead>
+                              <tbody>
+                                {% for team in conf_teams %}
+                                  <tr class="rounded">
+                                    <td style="color:#605d5c" class="pe-0">{{ forloop.counter }}.</td>
+                                    <td style="width:60px; height:50px"><img src="{% get_media_prefix %}{{team.school_team__school__school_image}}" style="max-width:100%;max-height:100%;width:auto;height:auto;" class="p-0"></td>
+                                    <td style="color:#495057" class="text-start"><strong>{{team.school_team__school__school_name}}</strong></td>
+                                    <td style="color:#605d5c">W: {{team.wins}}</td>
+                                    <td style="color:#605d5c">L: {{team.losses}}</td>
+                                    <td style="color:#605d5c">T: {{team.ties}}</td>
+                                    <td style="color:#605d5c">Points: {{team.points}}</td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+                    {% endfor %}
+                  {% endwith %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section> 
+
+    <!-- =================================
+        CHAMPIONSHIP UPCOMING MATCHES
+    =================================== -->
+    <section id="offerings" class="offerings">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="section-header">
+          <p>{{active_league_games|getLeagueSeason}} <span>CHAMPIONSHIP</span> UPCOMING <span>MATCHES</span></p>
+        </div>
+        <ul class="nav nav-tabs d-flex justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" role="tablist">
+          {% for league in active_league_games %}
+            {% if league.league_level.level_of_play == "Champion" %}
+            <li class="nav-item" role="presentation"> 
+              {% if league.id == active_league_games.0.id %}
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}2" aria-selected="true" role="tab">
+                  <h4>{{league}}</h4> 
+                </a>
+              {% else %}
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}2" aria-selected="false" tabindex="-1" role="tab">
+                  <h4>{{league}}</h4> 
+                </a>
+              {% endif %}
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <div class="tab-content aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          {% for league in active_league_games %}
+            {% if league.league_level.level_of_play == "Champion" %}
+              {% if league.id == active_league_games.0.id %}
+                <div class="tab-pane mt-2 fade active show bgimg-1 px-4" id="{{league.season}}-{{league.id}}2" style="background-image:url({% static 'gseBG2.png' %});" role="tabpanel">
+              {% else %}
+                <div class="tab-pane mt-2 fade bgimg-1 px-4" id="{{league.season}}-{{league.id}}2" style="background-image:url({% static 'gseBG2.png' %}); " role="tabpanel">
+              {% endif %}
+                  <div class="tab-header d-flex text-center align-items-center row text-light">
+                    <div class="col"><img src="{% static 'gseLogo.png' %}" height="100px" width="auto" class="ms-1"></div>
+                    <div class="col"><h4 class="align-middle fs-3 font-weight-bold">{{ league|get_match_date:upcoming_week_matches}}<br>{{league.league_season_name}}</h4></div>
+                  </div>
+                  <div class="row d-flex">
+                    {% with league|getConferences as league_confs %}
+                    {% for conf in league_confs %}
+                    {% with league|get_league_matches_comp:upcoming_week_matches|checkConference_team:conf as conf_matches %}
+                    {% if conf_matches|length > 0 %}
+                      {% if league_confs|length > 2 %}
+                        <div class="col-md-4 text-center rounded">
+                      {% else %}
+                        <div class="col text-center rounded"> 
+                      {% endif %}
+                      
+                      
+                          <table style="font-family: sans-serif;" class="table table-striped table-hover bg-light rounded ">
+                            <thead class="bg-primary fs-3 text-light"><th class="rounded">{{conf}}</th></thead>
+                              <tbody>
+                            
+                                {% for match in conf_matches %}
+                                  <tr class="rounded">
+                                    <td style="color:#3b3939" class="text-center align-middle align-items-center">
+                                      <div class="row pe-4">
+                                        <div class="col">
+                                          <strong><p class="mb-2">{{match.home_team__school_team__school__school_name}}</p></strong>
+                                          <strong><p class="mb-2">{{match.away_team__school_team__school__school_name}}</p></strong>
+                                        </div>
+                                        <div class="col-3 rounded-circle bg-primary align-middle" style="width:50px; height:50px; margin-top:5px; padding-top:12px">
+                                          <strong class="align-middle text-warning">VS</strong>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                {% endfor %}
+                            
+                              </tbody>
+                            </table>
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+                    {% endfor %}
+                  {% endwith %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================
+        CONTENDERS UPCOMING MATCHES
+    =================================== -->
+    <section id="offerings" class="offerings">
+      <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="section-header">
+          <p>{{contenders_games|getLeagueSeason}} <span>CONTENDERS</span> UPCOMING <span>MATCHES</span></p>
+        </div>
+        <ul class="nav nav-tabs d-flex justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" role="tablist">
+          {% for league in contenders_games %}
+            {% if league.league_level.level_of_play == "Contenders" %}
+            <li class="nav-item" role="presentation"> 
+              {% if league.id == contenders_games.0.id %}
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}4" aria-selected="true" role="tab">
+                  <h4>{{league}}</h4> 
+                </a>
+              {% else %}
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#{{league.season}}-{{league.id}}4" aria-selected="false" tabindex="-1" role="tab">
+                  <h4>{{league}}</h4> 
+                </a>
+              {% endif %}
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <div class="tab-content aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          {% for league in contenders_games %}
+            {% if league.league_level.level_of_play == "Contenders" %}
+              {% if league.id == contenders_games.0.id %}
+                <div class="tab-pane mt-2 fade active show bgimg-1 px-4" id="{{league.season}}-{{league.id}}4" style="background-image:url({% static 'gseBG2.png' %});" role="tabpanel">
+              {% else %}
+                <div class="tab-pane mt-2 fade bgimg-1 px-4" id="{{league.season}}-{{league.id}}4" style="background-image:url({% static 'gseBG2.png' %}); " role="tabpanel">
+              {% endif %}
+                  <div class="tab-header d-flex text-center align-items-center row text-light">
+                    <div class="col"><img src="{% static 'gseLogo.png' %}" height="100px" width="auto" class="ms-1"></div>
+                    <div class="col"><h4 class="align-middle fs-3 font-weight-bold">{{ league|get_match_date:upcoming_week_matches}}<br>{{league.league_season_name}}</h4></div>
+                  </div>
+                  <div class="row d-flex">
+                    {% with league|getConferences as league_confs %}
+                      {% for conf in league_confs %}
+                        {% with league|get_league_matches_comp:upcoming_week_matches|checkConference_team:conf as conf_matches %}
+                          {% if conf_matches|length > 0 %}
+                            {% if league_confs|length > 2 %}
+                              <div class="col-md-4 text-center rounded">
+                            {% else %}
+                              <div class="col text-center rounded"> 
+                            {% endif %}
+                              <table style="font-family: sans-serif;" class="table table-striped table-hover bg-light rounded ">
+                                <thead class="bg-primary fs-3 text-light">
+                                  <th class="rounded">{{conf}}</th>
+                                </thead>
+                                <tbody>
+                                  {% for match in conf_matches %}
+                                    <tr class="rounded">
+                                      <td style="color:#3b3939" class="text-center align-middle align-items-center">
+                                        <div class="row pe-4">
+                                          <div class="col">
+                                            <strong><p class="mb-2">{{match.home_team__school_team__school__school_name}}</p></strong>
+                                            <strong><p class="mb-2">{{match.away_team__school_team__school__school_name}}</p></strong>
+                                          </div>
+                                          <div class="col-3 rounded-circle bg-primary align-middle" style="width:50px; height:50px; margin-top:5px; padding-top:12px">
+                                            <strong class="align-middle text-warning">VS</strong>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  {% endfor %} 
+                                </tbody>
+                              </table>
+                            </div>
+                          {% endif %}
+                        {% endwith %}
+                      {% endfor %}
+                    {% endwith %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- FOOTER -->
+  <footer style="display: block; width: 100%; margin: 0 auto; z-index: 100; position: relative;background-color:#222;">
+    
+    <div class="row align-items-center m-0" style="background-color:#444; height:60px; width:100%;">
+      <div class="textwidget" style="text-align:center;">
+          <p><span style="color: #ffffff;">©2022  Garden State Esports. All Rights Reserved. </span></p>
+      </div>
+    </div>
+  </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+      
+  </body>
+</html>
