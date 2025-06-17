@@ -19,10 +19,10 @@ def login(request):
 # Render the home page with league overview and recent matches
 def index(request):
     # If user is a site manage show admin dashboard button
-    is_admin = request.user.groups.filter(name='Site Manager').exists()
+    is_admin = request.user.groups.filter(name='#####').exists()
     subdomain = request.META.get('HTTP_HOST').split('.')[0]  # Get subdomain from request
     schema = connection.get_schema()
-    if subdomain == 'public' or subdomain == '127' or subdomain == '' or subdomain == 'www' or subdomain == 'tenant': # For testing
+    if subdomain == 'public' or subdomain == '127': # For testing
         subdomain = 'gse' # Default schema
     org = Org_League.objects.get(org_schema=subdomain)  # Get organization data
   
