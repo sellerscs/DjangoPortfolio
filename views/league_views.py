@@ -96,7 +96,7 @@ def handler500(request):
 @cache_page(5)
 def competitions(request):
     # If user is a site manage show admin dashboard button
-    is_admin = request.user.groups.filter(name='Site Manager').exists()
+    is_admin = request.user.groups.filter(name='######').exists()
 
     # Find all active games for displaying teams and standings
     active_matches = Match.objects.filter(match_date__league_game__activate = True)
@@ -135,12 +135,12 @@ def competitions(request):
 # Render privacy policy page
 def privacy_policy(request):
     # If user is a site manage show admin dashboard button
-    is_admin = request.user.groups.filter(name='Site Manager').exists()
+    is_admin = request.user.groups.filter(name='#####').exists()
 
     # Get subdomain from request
     subdomain = request.META.get('HTTP_HOST').split('.')[0]
     schema = connection.get_schema()
-    if subdomain == 'public' or subdomain == '127' or subdomain == '' or subdomain == 'tenant': # For testing
+    if subdomain == 'public' or subdomain == '127': # For testing
         subdomain = 'gse'
     org = Org_League.objects.get(org_schema=subdomain)
     img_path = 'media'
